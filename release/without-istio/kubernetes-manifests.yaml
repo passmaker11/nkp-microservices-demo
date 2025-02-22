@@ -704,7 +704,7 @@ spec:
           RETRY_INTERVAL=10
           for i in $(seq 1 $MAX_RETRIES); do
             echo "Attempt $i: Pinging frontend: ${FRONTEND_ADDR}..."
-            STATUSCODE=$(wget --server-response http://${FRONTEND_ADDR} 2>&1 | awk '/^  HTTP/{print $2}')
+            STATUSCODE=$(curl -s -o /dev/null -w "%{http_code}" http://${FRONTEND_ADDR})
             if [ $STATUSCODE -eq 200 ]; then
                 echo "Frontend is reachable."
                 exit 0
@@ -722,7 +722,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: busybox:latest
+        image: curlimages/curl:latest
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
