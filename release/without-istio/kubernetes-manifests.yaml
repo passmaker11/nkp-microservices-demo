@@ -686,6 +686,7 @@ spec:
         app: loadgenerator
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
+        # If you want to use the initContainer with Istio to wait until frontend service is up
         # traffic.sidecar.istio.io/excludeOutboundPorts: '80'
     spec:
       serviceAccountName: loadgenerator
@@ -696,6 +697,9 @@ spec:
         runAsGroup: 1000
         runAsNonRoot: true
         runAsUser: 1000
+      ###
+      # This conflicts with Istio sidecar
+      ####
       # initContainers:
       # - command:
       #   - /bin/sh
