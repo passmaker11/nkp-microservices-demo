@@ -332,7 +332,7 @@ spec:
           #   value: "true"
           # - name: ENABLE_ASSISTANT
           #   value: "true"
-          # - name: FRONTEND_MESSAGE
+            - name: FRONTEND_MESSAGE
              value: "Nutanix-lab."
           # As part of an optional Google Cloud demo, you can run an optional microservice called the "packaging service".
           # - name: PACKAGING_SERVICE_URL
